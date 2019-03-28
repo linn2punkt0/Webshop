@@ -23,27 +23,38 @@ namespace Webshop.Services
             return cartRepository.Get(id);
         }
 
-        public bool Add(Carts carts)
+        public int Add(Carts carts)
         {
-            if (carts != null)
-            {
-                if (carts.Product_id != null)
-                {
-                    if (carts.Quantity != null)
-                    {
-                        cartRepository.Add(carts);
-                        return true;
-                    }
-                }
-            }
 
-            return false;
+            if (carts.Product_id == 0)
+            {
+                return 0;
+            }
+            if (carts.Cart_id == 0)
+            {
+                carts.Cart_id = this.GetRandomCartId();
+                cartRepository.Add(carts);
+                return (carts.Cart_id);
+            }
+            else
+            {
+                cartRepository.Add(carts);
+                return 1;
+            }
+          
+        }
+
+        public int GetRandomCartId()
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(0, 1000);
+            return randomNumber;
         }
         
         public bool Delete(int id)
         {
-            var postExists = cartRepository.Get(id);
-            if (postExists != null)
+            var cartExists = cartRepository.Get(id);
+            if (cartExists != null)
             {
                 cartRepository.Delete(id);
                 return true;

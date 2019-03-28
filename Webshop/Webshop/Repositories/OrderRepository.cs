@@ -37,8 +37,8 @@ namespace Webshop.Repositories
         {
             using (var connection = new MySqlConnection(this.connectionString))
             {
-                connection.Execute("INSERT INTO orders (name, street_adress, postal_code, city, country, email, phone_number) VALUES(@header, @body)", orders);
-                connection.Execute("INSERT INTO order_products (order_id, product_id, product_name, quantity, price) VALUES ()");
+                connection.Execute("INSERT INTO orders (id, name, street_adress, postal_code, city, country, email, phone_number) VALUES(@id, @name, @street_adress, @postal_code, @city, @country, @email, @phone_number)", orders);
+                connection.Execute("INSERT INTO order_products (order_id, product_id, product_name, price) VALUES ()");
             }
         }
     }

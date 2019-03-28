@@ -7,16 +7,14 @@ import { Router } from "@reach/router";
 
 class App extends Component {
   state = {
-    products: [],
-    cart: []
+    products: []
   };
-
   componentDidMount = () => {
     this.getAllProducts();
   };
 
   getAllProducts = () => {
-    return fetch("https://localhost:5001/api/Product")
+    return fetch("https://localhost:5001/api/product")
       .then(response => response.json())
       .then(data => {
         this.setState({ products: data });
@@ -25,7 +23,7 @@ class App extends Component {
   };
 
   getProductsById = id => {
-    return fetch(`https://localhost:5001/api/Product/${id}`)
+    return fetch(`https://localhost:5001/api/product/${id}`)
       .then(function(response) {
         return response.json();
       })
@@ -36,14 +34,55 @@ class App extends Component {
       .catch(error => console.error(error));
   };
 
-  addProductsToCart = id => {
-    this.setState = {
-      cart: { id }
-    };
-    console.log("product added!");
+  addProductsToCart = (id, product_id) => {
+    fetch(`https://localhost:5001/api/cart?id=${id}&product_id=${product_id}`, {
+      method: "POST"
+    })
+      .then(function(response) {
+        console.log(response);
+        return response.json();
+      })
+      .then(function(myJson) {
+        let cart_id = myJson;
+        console.log(cart_id);
+      })
+      .catch(error => console.error(error));
+
+    console.log(id);
   };
 
-  addOrder = () => {};
+  // getCartItemsById = id => {
+  //   fetch(`https://localhost:5001/api/cart/${id}`)
+  //     .then(function(response) {
+  //       return response.json();
+  //     })
+  //     .then(function(myJson) {
+  //       let cartItems = myJson;
+  //     })
+  //     .catch(error => console.error(error));
+  // };
+
+  // addOrder = () => {
+  //   fetch(`https://localhost:5001/api/order`, { method: POST })
+  //     .then(function(response) {
+  //       return response.json();
+  //     })
+  //     .then(function(myJson) {})
+  //     .catch(error => console.error(error));
+
+  //   console.log(id);
+  // };
+
+  // getOrderById = () => {
+  //   fetch(`https://localhost:5001/api/order/${id}`)
+  //     .then(function(response) {
+  //       return response.json();
+  //     })
+  //     .then(function(myJson) {
+  //       let order = myJson;
+  //     })
+  //     .catch(error => console.error(error));
+  // };
 
   render() {
     return (
@@ -54,7 +93,7 @@ class App extends Component {
           <ProductPage
             addToCart={this.addProductsToCart}
             products={this.state.products}
-            path="/products"
+            path="/"
           />
           <CartPage cart={this.state.cart} path="/cart" />
         </Router>

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -47,14 +48,20 @@ namespace Webshop.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Carts carts)
         {
-            var result = this.cartService.Add(carts);
+//            var cartGuid = Guid.TryParse(guid, out Guid guidresult) ? guidresult : Guid.NewGuid();
+            
+            var cart = this.cartService.Add(carts);
 
-            if (!result)
+            if (cart == 0)
             {
                 return BadRequest();
             }
+            else if (cart == 1)
+            {
+                return Ok();
+            }
 
-            return Ok();
+            return Ok(cart);
         }
     }
 }
