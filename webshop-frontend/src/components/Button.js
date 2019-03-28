@@ -16,7 +16,7 @@ const Button = styled.button`
   z-index: 5;
 
   &:hover {
-    background: dodgerblue;
+    background: #4a97bd;
     box-shadow: 2px 2px 0px 0px black;
   }
 `;

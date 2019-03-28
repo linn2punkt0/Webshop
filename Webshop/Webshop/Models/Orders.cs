@@ -12,10 +12,7 @@ namespace Webshop.Models
         public string Phone_number { get; set; }
         public string Date { get; set; }
         public int Product_id { get; set; }
-        public int Size { get; set; }
         public int Quantity { get; set; }
         public int Price { get; set; }
-        public int Stock { get; set; }
-        public string Img_url { get; set; }
     }
 }
