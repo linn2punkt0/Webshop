@@ -35,11 +35,18 @@ class App extends Component {
   };
 
   addProductsToCart = (id, product_id) => {
-    fetch(`https://localhost:5001/api/cart?id=${id}&product_id=${product_id}`, {
-      method: "POST"
+    const body = {
+      product_id,
+      cart_id: id
+    };
+    fetch(`https://localhost:5001/api/cart`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
     })
       .then(function(response) {
-        console.log(response);
         return response.json();
       })
       .then(function(myJson) {

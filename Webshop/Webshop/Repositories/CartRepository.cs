@@ -23,11 +23,11 @@ namespace Webshop.Repositories
             }
         }
 
-        public Carts Get(int id)
+        public Carts Get(int cart_id)
         {
             using (var connection = new MySqlConnection(this.connectionString))
             {
-                var carts = connection.QuerySingleOrDefault<Carts>("SELECT * FROM carts WHERE Id = @id", new { id });
+                var carts = connection.QuerySingleOrDefault<Carts>("SELECT * FROM carts WHERE cart_id = @cart_id", new { cart_id });
                 return carts;
             };
         }
@@ -39,11 +39,11 @@ namespace Webshop.Repositories
                 connection.Execute("INSERT INTO carts (cart_id, product_id) VALUES(@cart_id, @product_id)", carts);
             }
         }
-        public void Delete(int id)
+        public void Delete(int cart_id)
         {
             using (var connection = new MySqlConnection(this.connectionString))
             {
-                connection.Execute("DELETE FROM carts WHERE Id = @id", new { id });
+                connection.Execute("DELETE FROM carts WHERE cart_id = @cart_id", new { cart_id });
                 
             };
         }

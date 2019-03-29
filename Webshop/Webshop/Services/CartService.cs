@@ -51,12 +51,12 @@ namespace Webshop.Services
             return randomNumber;
         }
         
-        public bool Delete(int id)
+        public bool Delete(int cart_id)
         {
-            var cartExists = cartRepository.Get(id);
+            var cartExists = cartRepository.Get(cart_id);
             if (cartExists != null)
             {
-                cartRepository.Delete(id);
+                cartRepository.Delete(cart_id);
                 return true;
             }
 
