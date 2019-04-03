@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Form from "./Form.js";
 import Button from "./Button.js";
+import CartItem from "./CartItem.js";
 
 const StyledCartPage = styled.div`
   .line {
@@ -16,15 +17,54 @@ const StyledCartPage = styled.div`
 `;
 
 const CartPage = props => {
+  const [productIds, setProductIds] = useState(null);
+  const [productsInCart, setProductsInCart] = useState(true);
+
+  useEffect(() => {
+    getCartItemsById(props.cart);
+    getProductsById(productIds);
+  }, []);
+
+  const getCartItemsById = id => {
+    fetch(`https://localhost:5001/api/cart/${id}`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson) {
+        // Här får jag ut ett product id, hur plocka ut alla och loopa för att fetcha info?
+        console.log(myJson[0].product_id);
+
+        setProductIds(...myJson);
+      })
+      .catch(error => console.error(error));
+  };
+
+  const getProductsById = id => {
+    return fetch(`https://localhost:5001/api/product/${id}`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson) {
+        let products = myJson;
+        return products;
+      })
+      .catch(error => console.error(error));
+  };
+
+  // Nått sånt här fast som funkar.
+  productIds.map(element) => {
+    setProductsInCart(getProductsById(element))
+  };
+
   return (
     <StyledCartPage>
       <div className="line" />
       <div className="cartContent">
-        <ul>
-          {props.cart.map(element => (
-            <li>{element}</li>
-          ))}
-        </ul>
+        {/* <ul> */}
+        {/* {productsInCart.map(element => (
+          <CartItem productId={element} />
+        ))} */}
+        {/* </ul> */}
       </div>
       <h2>
         Want to place an order? Enter your contact and delivery info below.

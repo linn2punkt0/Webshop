@@ -42,7 +42,7 @@ const Products = props => {
         <h6>{props.product.price}kr</h6>
         <h6>{props.product.size}cl</h6>
       </div>
-      <Button onClick={() => props.addToCart(0, props.product.id)}>
+      <Button onClick={() => props.addToCart(props.cart, props.product.id)}>
         Add to cart
       </Button>
     </StyledProducts>

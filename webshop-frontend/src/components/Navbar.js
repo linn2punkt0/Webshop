@@ -37,7 +37,7 @@ const Navbar = () => {
     <StyledNavbar>
       {" "}
       <h2>Gin-shop</h2>
-      <Link to="/products">Products</Link>
+      <Link to="/">Products</Link>
       <Link to="/cart">Cart</Link>
     </StyledNavbar>
   );

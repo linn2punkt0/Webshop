@@ -23,6 +23,7 @@ const ProductPage = props => {
           addToCart={props.addToCart}
           key={element.id}
           product={element}
+          cart={props.cart}
         />
       ))}
     </StyledProductPage>

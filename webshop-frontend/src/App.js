@@ -7,7 +7,8 @@ import { Router } from "@reach/router";
 
 class App extends Component {
   state = {
-    products: []
+    products: [],
+    cartId: 0
   };
   componentDidMount = () => {
     this.getAllProducts();
@@ -34,10 +35,10 @@ class App extends Component {
       .catch(error => console.error(error));
   };
 
-  addProductsToCart = (id, product_id) => {
+  addProductsToCart = (cart_id, product_id) => {
     const body = {
       product_id,
-      cart_id: id
+      cart_id: cart_id
     };
     fetch(`https://localhost:5001/api/cart`, {
       method: "POST",
@@ -46,16 +47,15 @@ class App extends Component {
       },
       body: JSON.stringify(body)
     })
-      .then(function(response) {
+      .then(response => {
         return response.json();
       })
-      .then(function(myJson) {
+      .then(myJson => {
         let cart_id = myJson;
-        console.log(cart_id);
+        console.log(myJson);
+        this.setState({ cartId: myJson });
       })
       .catch(error => console.error(error));
-
-    console.log(id);
   };
 
   // getCartItemsById = id => {
@@ -100,9 +100,10 @@ class App extends Component {
           <ProductPage
             addToCart={this.addProductsToCart}
             products={this.state.products}
+            cart={this.state.cartId}
             path="/"
           />
-          <CartPage cart={this.state.cart} path="/cart" />
+          <CartPage cart={this.state.cartId} path="/cart" />
         </Router>
       </div>
     );
