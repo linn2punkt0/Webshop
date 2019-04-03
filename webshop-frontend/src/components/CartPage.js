@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Form from "./Form.js";
-import Button from "./Button.js";
 import CartItem from "./CartItem.js";
 
 const StyledCartPage = styled.div`
+  ul {
+    padding: 0;
+    margin: 10px;
+  }
   .line {
     height: 2px;
     width: 96vw;
@@ -42,7 +45,7 @@ const CartPage = props => {
       <div className="cartContent">
         <ul>
           {productsInCart.map(element => (
-            <CartItem product={element} />
+            <CartItem product={element} key={element.id} />
           ))}
         </ul>
       </div>

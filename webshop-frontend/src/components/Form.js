@@ -12,6 +12,10 @@ const StyledForm = styled.form`
   input {
     margin: 5px;
   }
+  h1 {
+    color: #4a97bd;
+    font-weight: 700;
+  }
 `;
 
 class Form extends Component {
@@ -25,7 +29,8 @@ class Form extends Component {
       city: "",
       country: "",
       email: "",
-      phone: ""
+      phone: "",
+      success: false
     };
   }
 
@@ -50,7 +55,7 @@ class Form extends Component {
         email: this.state.email,
         phone_number: this.state.phone
       },
-      cart_id: this.state.cart_id
+      cartId: this.state.cart_id
     };
     console.log(body);
 
@@ -61,17 +66,16 @@ class Form extends Component {
       },
       body: JSON.stringify(body)
     })
-      // .then(response => {
-      //   return response.json();
-      // })
-      // .then(myJson => {
-      //   console.log(myJson);
-      // })
+      .then(response => {
+        console.log(response);
+        this.setState({ success: true });
+      })
       .catch(error => console.error(error));
   };
   render() {
     return (
       <StyledForm>
+        <h1>{this.state.success ? "Order completed!" : ""}</h1>
         <label htmlFor="name">Please enter your full name:</label>
         <input
           name="name"

@@ -4,7 +4,7 @@ import styled from "styled-components";
 const StyledCartItem = styled.li`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 
   h3,
