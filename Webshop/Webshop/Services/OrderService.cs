@@ -8,11 +8,13 @@ namespace Webshop.Services
     public class OrderService
     {
         private readonly OrderRepository orderRepository;
+        private readonly CartRepository cartRepository;
 
-        public  OrderService(OrderRepository orderRepository)
-        {
-            this.orderRepository = orderRepository;
-        }
+        public  OrderService(OrderRepository orderRepository, CartRepository cartRepository)
+                 {
+                     this.orderRepository = orderRepository;
+                     this.cartRepository = cartRepository;
+                 }
 
         public List<Orders> Get()
         {
@@ -24,17 +26,18 @@ namespace Webshop.Services
             return orderRepository.Get(id);
         }
 
-        public bool Add(Orders orders)
+        public bool Add(Customer customer, int cartId)
         {
-            if (orders != null)
+            if (customer != null)
             {
-                if (orders.Customer_name != null && orders.Customer_name != String.Empty)
+                if (cartId != 0)
                 {
-                    if (orders.Street_adress != null && orders.Street_adress != String.Empty)
-                    {
-                        orderRepository.Add(orders);
+
+                    var products = cartRepository.Get(cartId);
+                 
+                    
+                        orderRepository.Add(products, customer);
                         return true;
-                    }
                 }
             }
 

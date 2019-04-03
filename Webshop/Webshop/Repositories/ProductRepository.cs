@@ -33,22 +33,22 @@ namespace Webshop.Repositories
             };
         }
 
-        public void Add(Products products)
-        {
-            using (var connection = new MySqlConnection(this.connectionString))
-            {
-                connection.Execute("INSERT INTO Products (Header, Body) VALUES(@header, @body)", products);
-            }
-        }
+//        public void Add(Products products)
+//        {
+//            using (var connection = new MySqlConnection(this.connectionString))
+//            {
+//                connection.Execute("INSERT INTO Products (Header, Body) VALUES(@header, @body)", products);
+//            }
+//        }
 
-        public void Delete(int id)
-        {
-            using (var connection = new MySqlConnection(this.connectionString))
-            {
-                connection.Execute("DELETE FROM Products WHERE Id = @id", new { id });
-                
-            };
-        }
+//        public void Delete(int id)
+//        {
+//            using (var connection = new MySqlConnection(this.connectionString))
+//            {
+//                connection.Execute("DELETE FROM Products WHERE Id = @id", new { id });
+//                
+//            };
+//        }
 
     }
 }

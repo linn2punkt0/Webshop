@@ -23,11 +23,11 @@ namespace Webshop.Repositories
             }
         }
 
-        public Carts Get(int cart_id)
+        public List<CartProduct> Get(int cart_id)
         {
             using (var connection = new MySqlConnection(this.connectionString))
             {
-                var carts = connection.QuerySingleOrDefault<Carts>("SELECT * FROM carts WHERE cart_id = @cart_id", new { cart_id });
+                var carts = connection.Query<CartProduct>("SELECT products.id, products.name, products.price, products.size FROM carts INNER JOIN products ON carts.product_id=products.id WHERE carts.cart_id=@cart_id", new { cart_id }).ToList();
                 return carts;
             };
         }

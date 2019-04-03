@@ -16,7 +16,7 @@ namespace Webshop.Controllers
         public OrderController(IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("ConnectionString");
-            this.orderService = new OrderService(new OrderRepository(connectionString));
+            this.orderService = new OrderService(new OrderRepository(connectionString), new CartRepository(connectionString));
         }
             
         [HttpGet]
@@ -42,11 +42,12 @@ namespace Webshop.Controllers
 
             return NotFound();
         }
-            
+
+ 
         [HttpPost]
-        public IActionResult Post([FromBody]Orders orders)
+        public IActionResult Post([FromBody]OrderInfo orderInfo)
         {
-            var result = this.orderService.Add(orders);
+            var result = this.orderService.Add(orderInfo.customer, orderInfo.CartId);
 
             if (!result)
             {

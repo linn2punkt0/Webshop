@@ -42,30 +42,30 @@ namespace Webshop.Controllers
                 return NotFound();
             }
             
-            [HttpPost]
-            public IActionResult Post([FromBody]Products products)
-            {
-                var result = this.productService.Add(products);
+//            [HttpPost]
+//            public IActionResult Post([FromBody]Products products)
+//            {
+//                var result = this.productService.Add(products);
+//
+//                if (!result)
+//                {
+//                    return BadRequest();
+//                }
+//
+//                return Ok();
+//            }
 
-                if (!result)
-                {
-                    return BadRequest();
-                }
-
-                return Ok();
-            }
-
-            [HttpDelete("{id}")]
-            public IActionResult Delete(int id)
-            {
-                var result = this.productService.Delete(id);
-
-                if (!result)
-                {
-                    return BadRequest();
-                }
-
-                return Ok();
-            }
+//            [HttpDelete("{id}")]
+//            public IActionResult Delete(int id)
+//            {
+//                var result = this.productService.Delete(id);
+//
+//                if (!result)
+//                {
+//                    return BadRequest();
+//                }
+//
+//                return Ok();
+//            }
      }
 }

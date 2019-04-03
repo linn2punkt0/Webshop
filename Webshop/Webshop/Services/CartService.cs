@@ -18,9 +18,9 @@ namespace Webshop.Services
             return cartRepository.Get();
         }
 
-        public Carts Get(int id)
+        public List<CartProduct> Get(int cart_id)
         {
-            return cartRepository.Get(id);
+            return cartRepository.Get(cart_id);
         }
 
         public int Add(Carts carts)
@@ -38,8 +38,8 @@ namespace Webshop.Services
             }
             else
             {
-                cartRepository.Add(carts);
-                return 1;
+                this.cartRepository.Add(carts);
+                return (carts.Cart_id);
             }
           
         }

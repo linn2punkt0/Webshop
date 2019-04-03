@@ -24,33 +24,33 @@ namespace Webshop.Services
                 return productRepository.Get(id);
             }
 
-            public bool Add(Products products)
-            {
-                if (products != null)
-                {
-                    if (products.Name != null && products.Name != String.Empty)
-                    {
-                        if (products.Description != null && products.Description != String.Empty)
-                        {
-                            productRepository.Add(products);
-                            return true;
-                        }
-                    }
-                }
-
-                return false;
-            }
+//            public bool Add(Products products)
+//            {
+//                if (products != null)
+//                {
+//                    if (products.Name != null && products.Name != String.Empty)
+//                    {
+//                        if (products.Description != null && products.Description != String.Empty)
+//                        {
+//                            productRepository.Add(products);
+//                            return true;
+//                        }
+//                    }
+//                }
+//
+//                return false;
+//            }
         
-            public bool Delete(int id)
-            {
-                var postExists = productRepository.Get(id);
-                if (postExists != null)
-                {
-                    productRepository.Delete(id);
-                    return true;
-                }
-
-                return false;
-            }
+//            public bool Delete(int id)
+//            {
+//                var postExists = productRepository.Get(id);
+//                if (postExists != null)
+//                {
+//                    productRepository.Delete(id);
+//                    return true;
+//                }
+//
+//                return false;
+//            }
         }
 }

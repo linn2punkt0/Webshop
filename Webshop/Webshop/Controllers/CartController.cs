@@ -33,10 +33,10 @@ namespace Webshop.Controllers
             return NotFound();
         }
             
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("{cart_id}")]
+        public IActionResult Get(int cart_id)
         {
-            var products = cartService.Get(id);
+            var products = cartService.Get(cart_id);
             if (products != null)
             {
                 return Ok(products);
@@ -47,20 +47,14 @@ namespace Webshop.Controllers
             
         [HttpPost]
         public IActionResult Post([FromBody]Carts carts)
-        {
-//            var cartGuid = Guid.TryParse(guid, out Guid guidresult) ? guidresult : Guid.NewGuid();
-            
+        {   
             var cart = this.cartService.Add(carts);
 
             if (cart == 0)
             {
                 return BadRequest();
             }
-            else if (cart == 1)
-            {
-                return Ok();
-            }
-
+          
             return Ok(cart);
         }
     }
