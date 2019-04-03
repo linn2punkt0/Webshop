@@ -50,8 +50,8 @@ const CartPage = props => {
         Want to place an order? Enter your contact and delivery info below.
       </h2>
       <div className="line" />
-      <Form />
-      <Button>Place order!</Button>
+      <Form cart={props.cart} />
+      {/* <Button>Place order!</Button> */}
     </StyledCartPage>
   );
 };

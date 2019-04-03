@@ -1,12 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledCartItem = styled.div``;
+const StyledCartItem = styled.li`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  h3,
+  p {
+    margin: 10px;
+  }
+`;
 
 const CartItem = props => {
   return (
     <StyledCartItem>
-      <p>{props.productId}</p>
+      <h3>{props.product.name}</h3>
+      <p>{props.product.price}kr</p>
+      <p>{props.product.size}cl</p>
     </StyledCartItem>
   );
 };
