@@ -15,7 +15,7 @@ namespace WebshopUnitTest.Services
         [SetUp]
         public void SetUp()
         {
-            this.productRepository = A.Fake<ProductRepository>();
+            this.productRepository = A.Fake<IProductRepository>();
             this.productService = new ProductService(this.productRepository);
         }
         
